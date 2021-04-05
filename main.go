@@ -13,8 +13,6 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
-var PREFIX_KEY = "/v1/kv/"
-
 type Config struct {
 	ConsulTarget string
 	Key          string
@@ -55,7 +53,7 @@ func getKey(config *Config) {
 
 	client := &http.Client{Transport: tr}
 
-	target := config.ConsulTarget + PREFIX_KEY + config.Key
+	target := config.ConsulTarget + config.Key
 	req, err := http.NewRequest("GET", target, nil)
 	checkErr("request connect consul", err)
 
